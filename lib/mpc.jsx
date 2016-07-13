@@ -1,7 +1,7 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 
-document.addEventListener("DOMContentLoaded", function () => {
+document.addEventListener("DOMContentLoaded", function () {
   const root = document.getElementById("root");
-  ReactDOM.render(<App/>, root)}
+  ReactDOM.render(<div>Hello</div>, root)}
 );

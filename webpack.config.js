@@ -1,7 +1,31 @@
+var path = require("path");
+
 module.exports = {
-  entry: "./lib/mpc.js",
+  context: __dirname,
+  entry: "./lib/mpc.jsx",
   output: {
-  	filename: "./lib/bundle.js"
+    path: path.join(__dirname, 'lib'),
+    filename: "bundle.js",
+    devtoolModuleFilenameTemplate: '[resourcePath]',
+    devtoolFallbackModuleFilenameTemplate: '[resourcePath]?[hash]'
   },
-  devtool: 'source-map',
+  module: {
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel',
+        query: {
+          presets: ['react']
+        }
+      }
+    ]
+  },
+	node: {
+		fs: "empty"
+	},
+  devtool: 'source-maps',
+  resolve: {
+    extensions: ["", ".js", ".jsx" ]
+  }
 };
