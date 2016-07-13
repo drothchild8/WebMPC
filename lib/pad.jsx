@@ -15,6 +15,7 @@ const Pad = React.createClass({
 	},
 	playSound: function (e) {
 		if (e.keyCode === 97) {
+			this.setState({pressed: false});
 			this.setState({pressed: true});
 		}
 	},
@@ -22,7 +23,7 @@ const Pad = React.createClass({
 		return (
 			<div>
 				Press A
-				<ReactHowler src={this.state.sound} playing={this.state.pressed}/>
+				<ReactHowler src={this.state.sound} playing={this.state.pressed} seek={'0'}/>
 			</div>
 		);
 	}
