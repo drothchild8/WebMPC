@@ -17,20 +17,55 @@ const soundBank = {
 	inst6: ''
 }
 
-const keymaps = [122, 120, 99, 118, 97, 115, 100, 102, 113, 119, 101, 114]
+const keymaps = [122, 120, 99, 118, 97, 115, 100, 102, 113, 119, 101, 114];
+
+let frame = 100000;
+
 const App = React.createClass({
-	render () {
+	componentWillMount: function () {
+		document.getElementById('canvas').style.backgroundColor = 'gray';
+	},
+	flash: function () {
+		if (this.interval) {
+			return;
+		} else {
+			this.interval = () => {
+				if (frame % 9 === 0) {
+					document.getElementById('canvas').style.backgroundColor = 'red';
+				} else {
+					document.getElementById('canvas').style.backgroundColor = 'gray';
+				}
+				frame = frame - 1;
+				this.request = window.requestAnimationFrame(this.interval);
+				return;
+			};
+		}
+		window.requestAnimationFrame(this.interval);
+	},
+	flashStop: function () {
+		window.cancelAnimationFrame(this.request);
+		this.interval = undefined;
+		frame = 10000000;
+	},
+	render: function () {
 		let pads = [];
 		let samples = Object.keys(soundBank);
 		samples.forEach((sample, idx) => {
 			let pad = (
-				<Pad key={sample} sound={soundBank[sample]} keymap={keymaps[idx]}/>
+				<Pad key={sample} num={idx} sound={soundBank[sample]} keymap={keymaps[idx]}/>
 			)
+			if (sample === "bass808") {
+				pad = (
+					<Pad key={sample} num={idx} sound={soundBank[sample]} keymap={keymaps[idx]} flash={this.flash} flashStop={this.flashStop}/>
+				)
+			}
 			pads.push(pad);
 		})
 		return (
-			<div className="pads-container">
-				{pads}
+			<div className="parent">
+				<div className="pads-container">
+					{pads}
+				</div>
 			</div>
 		)
 	}

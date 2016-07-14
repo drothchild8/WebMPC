@@ -1,6 +1,23 @@
+canvas {
+  position: absolute;
+  top: 0;
+  z-index: -99999;
+}
+
+.parent {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
 .pads-container {
   width: 500px;
   margin: 0 auto;
+}
+
+.pads-container-shake {
+  width: 500px;
+  margin: 95px auto;
 }
 
 .pad {
@@ -14,6 +31,15 @@
 }
 
 .pad.on {
-  background-color: gray;
+  background: radial-gradient(blue, lightblue);
   border: 3px solid orange;
+}
+
+.circle0, .circle1, .circle2, .circle3, .circle4, .circle5 {
+  background-color: purple;
+  width: 1em;
+  height: 1em;
+  margin-top: auto;
+  margin-bottom: auto;
+  border-radius: 50%;
 }
