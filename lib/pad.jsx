@@ -4,7 +4,7 @@ const ReactHowler = require('react-howler');
 const Pad = React.createClass({
 	getInitialState: function () {
 		return ({
-			sound: 'https://s3-us-west-1.amazonaws.com/webmpc/808+Bass+Deepish.wav',
+			sound: this.props.sound,
 			pressed: false,
 			volume: 1.0,
 			mute: false
@@ -14,16 +14,22 @@ const Pad = React.createClass({
 		document.addEventListener("keypress", this.playSound, false);
 	},
 	playSound: function (e) {
-		if (e.keyCode === 97) {
+		if (e.keyCode === this.props.keymap) {
 			this.setState({pressed: false});
 			this.setState({pressed: true});
 		}
 	},
+	handleEnd: function () {
+		this.setState({pressed: false});
+	},
 	render: function () {
+		let style = "off";
+		if (this.state.pressed) {
+			style = "on"
+		}
 		return (
-			<div>
-				Press A
-				<ReactHowler src={this.state.sound} playing={this.state.pressed} seek={'0'}/>
+			<div className={"pad " + style}>
+				<ReactHowler src={this.state.sound} playing={this.state.pressed} seek={'0'} onEnd={this.handleEnd}/>
 			</div>
 		);
 	}

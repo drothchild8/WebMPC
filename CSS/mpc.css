@@ -1,0 +1,19 @@
+.pads-container {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.pad {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  background-color: black;
+  border: 1px solid red;
+  box-sizing: border-box;
+}
+
+.pad.on {
+  background-color: gray;
+  border: 3px solid orange;
+}
