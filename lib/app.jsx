@@ -2,14 +2,14 @@ const React = require('react');
 const Pad = require('./pad.jsx');
 
 const soundBank = {
-	hatOpen: 'https://s3-us-west-1.amazonaws.com/webmpc/VEE2+Open+Hihat+015.wav',
-	inst4: '',
-	fx: 'https://s3-us-west-1.amazonaws.com/webmpc/FX.wav',
-	inst6: '',
+	hatOpen: 'https://s3-us-west-1.amazonaws.com/webmpc/HiHat+Open+003.wav',
+	inst4: 'https://s3-us-west-1.amazonaws.com/webmpc/ride.wav',
+	flextone: 'https://s3-us-west-1.amazonaws.com/webmpc/Flexatone2OD+Drums1DOTcom.wav',
+	chime: 'https://s3-us-west-1.amazonaws.com/webmpc/Chimes1OD+Drums1DOTcom.wav',
 	hatClosed: 'https://s3-us-west-1.amazonaws.com/webmpc/HiHat+Closed+005+Tight+and+Wide.wav',
 	perc1: 'https://s3-us-west-1.amazonaws.com/webmpc/BellyPerc.wav',
-	inst1: '',
-	inst2: '',
+	aye: 'https://s3-us-west-1.amazonaws.com/webmpc/LexLugerVox.wav',
+	shell: 'https://s3-us-west-1.amazonaws.com/webmpc/shells.wav',
 	kick: 'https://s3-us-west-1.amazonaws.com/webmpc/Kick+006+Lexy.wav',
 	bass808: 'https://s3-us-west-1.amazonaws.com/webmpc/808+Bass+Deepish.wav',
 	clap: 'https://s3-us-west-1.amazonaws.com/webmpc/Clap+010.wav',
@@ -32,8 +32,7 @@ const App = React.createClass({
 	},
 	flash: function () {
 		if (this.state.shake) {
-			this.flashStop();
-			this.setState({shake: true});
+			return;
 		} else {
 			this.setState({shake: true});
 		}
@@ -45,12 +44,13 @@ const App = React.createClass({
 		let pads = [];
 		let samples = Object.keys(soundBank);
 		samples.forEach((sample, idx) => {
+			let volume = sample === "fx" ? 0.1 : 1.0;
 			let pad = (
-				<Pad key={sample} name={sample} sound={soundBank[sample]} keymap={keymaps[idx]}/>
+				<Pad key={sample} name={sample} sound={soundBank[sample]} keymap={keymaps[idx]} volume={volume}/>
 			)
 			if (sample === "bass808") {
 				pad = (
-					<Pad key={sample} name={sample} sound={soundBank[sample]} keymap={keymaps[idx]} animate={this.flash} animateStop={this.flashStop}/>
+					<Pad key={sample} name={sample} sound={soundBank[sample]} keymap={keymaps[idx]}  volume={volume} animate={this.flash} animateStop={this.flashStop}/>
 				)
 			}
 			pads.push(pad);
