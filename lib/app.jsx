@@ -1,5 +1,4 @@
 const React = require('react');
-
 const Pad = require('./pad.jsx');
 
 const soundBank = {
@@ -19,7 +18,7 @@ const soundBank = {
 
 const keymaps = [122, 120, 99, 118, 97, 115, 100, 102, 113, 119, 101, 114];
 
-let frame = 100000;
+const Splash = require('./shapes/splash.js');
 
 const App = React.createClass({
 	getInitialState: function () {
@@ -29,6 +28,7 @@ const App = React.createClass({
 	},
 	componentWillMount: function () {
 		document.getElementById('canvas').style.backgroundColor = 'gray';
+		this.splash = new Splash(this.props.canvas, this.props.ctx);
 	},
 	flash: function () {
 		if (this.state.shake) {
@@ -39,18 +39,17 @@ const App = React.createClass({
 	},
 	flashStop: function () {
 		this.setState({shake: false});
-		frame = 100000;
 	},
 	render: function () {
 		let pads = [];
 		let samples = Object.keys(soundBank);
 		samples.forEach((sample, idx) => {
 			let pad = (
-				<Pad key={sample} num={idx} sound={soundBank[sample]} keymap={keymaps[idx]}/>
+				<Pad key={sample} name={sample} sound={soundBank[sample]} keymap={keymaps[idx]}/>
 			)
 			if (sample === "bass808") {
 				pad = (
-					<Pad key={sample} num={idx} sound={soundBank[sample]} keymap={keymaps[idx]} flash={this.flash} flashStop={this.flashStop}/>
+					<Pad key={sample} name={sample} sound={soundBank[sample]} keymap={keymaps[idx]} animate={this.flash} animateStop={this.flashStop}/>
 				)
 			}
 			pads.push(pad);

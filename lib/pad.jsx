@@ -1,7 +1,6 @@
 const React = require('react');
 const ReactHowler = require('react-howler');
-const anime = require('animejs');
-const Circle = require('./shapes/circles.jsx');
+const Options = require('./shapes/options.js');
 
 const Pad = React.createClass({
 	getInitialState: function () {
@@ -19,12 +18,12 @@ const Pad = React.createClass({
 		if (e.keyCode === this.props.keymap) {
 			this.setState({pressed: false});
 			this.setState({pressed: true});
-			this.props.flash();
+			this.props.animate(Options[this.props.name]);
 		}
 	},
 	handleEnd: function () {
 		this.setState({pressed: false});
-		this.props.flashStop();
+		this.props.animateStop();
 	},
 	render: function () {
 		let style = "off";

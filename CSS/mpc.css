@@ -5,8 +5,9 @@ canvas {
 }
 
 .parent {
-  position: fixed;
-  bottom: 0;
+  display: flex;
+  align-items: center;
+  height: 100vh;
   width: 100%;
 }
 
@@ -28,15 +29,6 @@ canvas {
 .pad.on {
   background: radial-gradient(blue, lightblue);
   border: 3px solid orange;
-}
-
-.circle0, .circle1, .circle2, .circle3, .circle4, .circle5 {
-  background-color: purple;
-  width: 1em;
-  height: 1em;
-  margin-top: auto;
-  margin-bottom: auto;
-  border-radius: 50%;
 }
 
 .shake {

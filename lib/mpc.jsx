@@ -17,6 +17,5 @@ document.addEventListener("DOMContentLoaded", function () {
 	const ctx = canvasEl.getContext("2d");
 
   const root = document.getElementById("root");
-  ReactDOM.render(<App ctx={ctx}/>, root)}
+  ReactDOM.render(<App canvas={canvasEl} ctx={ctx}/>, root)}
 );
-
