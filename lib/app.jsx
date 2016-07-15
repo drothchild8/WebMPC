@@ -2,21 +2,21 @@ const React = require('react');
 const Pad = require('./pad.jsx');
 
 const soundBank = {
-	kick: 'https://s3-us-west-1.amazonaws.com/webmpc/Kick+006+Lexy.wav',
-	bass808: 'https://s3-us-west-1.amazonaws.com/webmpc/808+Bass+Deepish.wav',
-	clap: 'https://s3-us-west-1.amazonaws.com/webmpc/Clap+010.wav',
-	snare: 'https://s3-us-west-1.amazonaws.com/webmpc/Snare+001.wav',
+	hatOpen: 'https://s3-us-west-1.amazonaws.com/webmpc/VEE2+Open+Hihat+015.wav',
+	inst4: '',
+	fx: 'https://s3-us-west-1.amazonaws.com/webmpc/FX.wav',
+	inst6: '',
 	hatClosed: 'https://s3-us-west-1.amazonaws.com/webmpc/HiHat+Closed+005+Tight+and+Wide.wav',
 	perc1: 'https://s3-us-west-1.amazonaws.com/webmpc/BellyPerc.wav',
 	inst1: '',
 	inst2: '',
-	inst3: '',
-	inst4: '',
-	inst5: '',
-	inst6: ''
+	kick: 'https://s3-us-west-1.amazonaws.com/webmpc/Kick+006+Lexy.wav',
+	bass808: 'https://s3-us-west-1.amazonaws.com/webmpc/808+Bass+Deepish.wav',
+	clap: 'https://s3-us-west-1.amazonaws.com/webmpc/Clap+010.wav',
+	snare: 'https://s3-us-west-1.amazonaws.com/webmpc/Snare+001.wav',
 }
 
-const keymaps = [122, 120, 99, 118, 97, 115, 100, 102, 113, 119, 101, 114];
+const keymaps = [113, 119, 101, 114, 97, 115, 100, 102, 122, 120, 99, 118];
 
 const Splash = require('./shapes/splash.js');
 
@@ -32,7 +32,8 @@ const App = React.createClass({
 	},
 	flash: function () {
 		if (this.state.shake) {
-			return;
+			this.flashStop();
+			this.setState({shake: true});
 		} else {
 			this.setState({shake: true});
 		}
