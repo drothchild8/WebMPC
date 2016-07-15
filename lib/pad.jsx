@@ -29,26 +29,11 @@ const Pad = React.createClass({
 	render: function () {
 		let style = "off";
 		if (this.state.pressed) {
-			style = "on"
+			style = "on";
 		}
-			anime({
-				targets: ('.circle' + this.props.num),
-				translateX: '13rem',
-				translateY: '20rem',
-				scale: {
-					value: 2,
-					delaly: 150
-				},
-				direction: 'alternate',
-				loop: false,
-				duration: 500,
-				easing: 'easeInOutExpo'
-				}
-			);
 		return (
 			<div className={"pad " + style}>
 				<ReactHowler src={this.state.sound} playing={this.state.pressed} seek={'0'} onEnd={this.handleEnd}/>
-				<Circle pad={this.props.num} pressed={this.state.pressed}/>
 			</div>
 		);
 	}

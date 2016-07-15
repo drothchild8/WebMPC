@@ -11,20 +11,15 @@ canvas {
 }
 
 .pads-container {
-  width: 500px;
+  width: 400px;
   margin: 0 auto;
-}
-
-.pads-container-shake {
-  width: 500px;
-  margin: 95px auto;
 }
 
 .pad {
   display: inline-block;
-  width: 100px;
-  height: 100px;
-  margin: 10px;
+  width: 75px;
+  height: 75px;
+  margin: 5px;
   background-color: black;
   border: 1px solid red;
   box-sizing: border-box;
@@ -42,4 +37,10 @@ canvas {
   margin-top: auto;
   margin-bottom: auto;
   border-radius: 50%;
+}
+
+.shake {
+  -webkit-animation-duration: 10s;
+  -moz-animation-duration: 10s;
+  -animation-duration: 10s;
 }

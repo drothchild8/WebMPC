@@ -22,30 +22,24 @@ const keymaps = [122, 120, 99, 118, 97, 115, 100, 102, 113, 119, 101, 114];
 let frame = 100000;
 
 const App = React.createClass({
+	getInitialState: function () {
+		return ({
+			shake: false
+		});
+	},
 	componentWillMount: function () {
 		document.getElementById('canvas').style.backgroundColor = 'gray';
 	},
 	flash: function () {
-		if (this.interval) {
+		if (this.state.shake) {
 			return;
 		} else {
-			this.interval = () => {
-				if (frame % 9 === 0) {
-					document.getElementById('canvas').style.backgroundColor = 'red';
-				} else {
-					document.getElementById('canvas').style.backgroundColor = 'gray';
-				}
-				frame = frame - 1;
-				this.request = window.requestAnimationFrame(this.interval);
-				return;
-			};
+			this.setState({shake: true});
 		}
-		window.requestAnimationFrame(this.interval);
 	},
 	flashStop: function () {
-		window.cancelAnimationFrame(this.request);
-		this.interval = undefined;
-		frame = 10000000;
+		this.setState({shake: false});
+		frame = 100000;
 	},
 	render: function () {
 		let pads = [];
@@ -61,9 +55,10 @@ const App = React.createClass({
 			}
 			pads.push(pad);
 		})
+		let style = this.state.shake ? "animated infinite shake" : '';
 		return (
 			<div className="parent">
-				<div className="pads-container">
+				<div className={"pads-container " + style}>
 					{pads}
 				</div>
 			</div>
