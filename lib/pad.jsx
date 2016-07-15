@@ -13,21 +13,26 @@ const Pad = React.createClass({
 	},
 	componentWillMount: function () {
 		document.addEventListener("keypress", this.playSound, false);
+		this.times = 0;
 	},
 	playSound: function (e) {
 		if (e.keyCode === this.props.keymap) {
+			// this.times = this.times + 1;
 			this.setState({pressed: false});
 			this.setState({pressed: true});
 			if (this.props.animate) {
-				this.props.animate();
+				this.props.animate(Options[this.props.name]);
 			}
 		}
 	},
 	handleEnd: function () {
-		this.setState({pressed: false});
-		if (this.props.animateStop) {
-			this.props.animateStop();
-		}
+		// this.times = this.times - 1;
+		// if (this.times === 0) {
+			this.setState({pressed: false});
+			if (this.props.animateStop) {
+				this.props.animateStop();
+			}
+		// }
 	},
 	render: function () {
 		let style = "off";

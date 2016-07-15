@@ -30,14 +30,12 @@ const App = React.createClass({
 		document.getElementById('canvas').style.backgroundColor = 'gray';
 		this.splash = new Splash(this.props.canvas, this.props.ctx);
 	},
-	flash: function () {
-		if (this.state.shake) {
-			return;
-		} else {
+	shake: function () {
+		if (!this.state.shake) {
 			this.setState({shake: true});
 		}
 	},
-	flashStop: function () {
+	shakeStop: function () {
 		this.setState({shake: false});
 	},
 	render: function () {
@@ -50,7 +48,7 @@ const App = React.createClass({
 			)
 			if (sample === "bass808") {
 				pad = (
-					<Pad key={sample} name={sample} sound={soundBank[sample]} keymap={keymaps[idx]}  volume={volume} animate={this.flash} animateStop={this.flashStop}/>
+					<Pad key={sample} name={sample} sound={soundBank[sample]} keymap={keymaps[idx]}  volume={volume} animate={this.shake} animateStop={this.shakeStop}/>
 				)
 			}
 			pads.push(pad);
