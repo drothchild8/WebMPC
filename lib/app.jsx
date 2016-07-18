@@ -1,4 +1,5 @@
 const React = require('react');
+const Modal = require('boron/wavemodal');
 const Pad = require('./pad.jsx');
 
 const soundBank = {
@@ -30,6 +31,15 @@ const App = React.createClass({
 		document.getElementById('canvas').style.backgroundColor = '#0b203c';
 		this.splash = new Splash(this.props.canvas, this.props.ctx);
 	},
+	componentDidMount: function () {
+		this.showModal();
+	},
+	showModal: function () {
+		this.refs.modal.show();
+	},
+	hideModal: function () {
+		this.refs.modal.hide();
+	},
 	shake: function () {
 		if (!this.state.shake) {
 			this.setState({shake: true});
@@ -59,6 +69,17 @@ const App = React.createClass({
 				<div className={"pads-container " + style}>
 					{pads}
 				</div>
+				<Modal ref="modal" className="welcome" modalStyle={{width: 300}} contentStyle={{backgroundColor: '#E4FCF9'}}>
+						<h2>Web MPC</h2>
+						<div className="body">
+							Press any of the following keys
+							<br/>
+							Q W E R A S D F Z X C V
+							<br/>
+							<br/>
+							<button onClick={this.hideModal} className="animated rubberBand">Continue</button>
+						</div>
+				</Modal>
 			</div>
 		)
 	}
