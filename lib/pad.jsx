@@ -12,7 +12,6 @@ const Pad = React.createClass({
 	},
 	componentWillMount: function () {
 		document.addEventListener("keypress", this.playSound, false);
-		this.times = 0;
 	},
 	playSound: function (e) {
 		if (e.keyCode === this.props.keymap) {
