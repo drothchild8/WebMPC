@@ -1,6 +1,5 @@
 const React = require('react');
 const ReactHowler = require('react-howler');
-const Options = require('./shapes/options.js');
 
 const Pad = React.createClass({
 	getInitialState: function () {
@@ -20,7 +19,7 @@ const Pad = React.createClass({
 			this.setState({pressed: false});
 			this.setState({pressed: true});
 			if (this.props.animate) {
-				this.props.animate(Options[this.props.name]);
+				this.props.animate();
 			}
 		}
 	},
