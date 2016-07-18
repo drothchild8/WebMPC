@@ -3,7 +3,7 @@ const Pad = require('./pad.jsx');
 
 const soundBank = {
 	hatOpen: 'https://s3-us-west-1.amazonaws.com/webmpc/HiHat+Open+003.wav',
-	inst4: 'https://s3-us-west-1.amazonaws.com/webmpc/ride.wav',
+	hatOpen2: 'https://s3-us-west-1.amazonaws.com/webmpc/ride.wav',
 	flextone: 'https://s3-us-west-1.amazonaws.com/webmpc/Flexatone2OD+Drums1DOTcom.wav',
 	chime: 'https://s3-us-west-1.amazonaws.com/webmpc/Chimes1OD+Drums1DOTcom.wav',
 	hatClosed: 'https://s3-us-west-1.amazonaws.com/webmpc/HiHat+Closed+005+Tight+and+Wide.wav',
@@ -27,7 +27,7 @@ const App = React.createClass({
 		});
 	},
 	componentWillMount: function () {
-		document.getElementById('canvas').style.backgroundColor = 'gray';
+		document.getElementById('canvas').style.backgroundColor = '#0b203c';
 		this.splash = new Splash(this.props.canvas, this.props.ctx);
 	},
 	shake: function () {

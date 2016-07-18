@@ -17,7 +17,6 @@ const Pad = React.createClass({
 	},
 	playSound: function (e) {
 		if (e.keyCode === this.props.keymap) {
-			// this.times = this.times + 1;
 			this.setState({pressed: false});
 			this.setState({pressed: true});
 			if (this.props.animate) {
@@ -26,18 +25,15 @@ const Pad = React.createClass({
 		}
 	},
 	handleEnd: function () {
-		// this.times = this.times - 1;
-		// if (this.times === 0) {
-			this.setState({pressed: false});
-			if (this.props.animateStop) {
-				this.props.animateStop();
-			}
-		// }
+		this.setState({pressed: false});
+		if (this.props.animateStop) {
+			this.props.animateStop();
+		}
 	},
 	render: function () {
 		let style = "off";
 		if (this.state.pressed) {
-			style = "on";
+			style = "on animated infinite pulse";
 		}
 		return (
 			<div className={"pad " + style}>
