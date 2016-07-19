@@ -1,6 +1,6 @@
 # Web MPC
 
-[live link][link]
+[Web MPC][link]
 
 [link]: https://xrayzx.github.io/WebMPC/
 
@@ -39,3 +39,12 @@ const Circle = function (x, y, options) {
   this.distance = options.distance;
 };
 ```
+
+### Future Plans
+* Incorporate more drum pads and sound samples.
+* Looping feature
+  * Records drum patterns for playback
+  * Allows live performance through layering sounds over recorded loop
+* More visual animations
+  * Squares
+  * Triangles
